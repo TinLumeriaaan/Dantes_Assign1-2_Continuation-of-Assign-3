@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BagShop - Your Style, Your Bag</title>
+    <title>Syris Bag Store</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,37 +81,37 @@
 $products = array(
     array(
         "name" => "Classic Leather Backpack",
-        "price" => 1299,
+        "price" => P1399,
         "category" => "Men",
         "description" => "Durable leather backpack perfect for daily use"
     ),
     array(
         "name" => "Elegant Tote Bag",
-        "price" => 899,
+        "price" => P899,
         "category" => "Women",
         "description" => "Stylish tote bag for work or casual outings"
     ),
     array(
         "name" => "Travel Duffel Bag",
-        "price" => 1599,
+        "price" => P1599,
         "category" => "Men",
         "description" => "Spacious bag ideal for weekend trips"
     ),
     array(
         "name" => "Crossbody Shoulder Bag",
-        "price" => 749,
+        "price" => P749,
         "category" => "Women",
         "description" => "Compact and trendy crossbody bag"
     ),
     array(
         "name" => "Laptop Messenger Bag",
-        "price" => 1099,
+        "price" => P1099,
         "category" => "Men",
         "description" => "Professional messenger bag with laptop compartment"
     ),
     array(
         "name" => "Mini Fashion Handbag",
-        "price" => 650,
+        "price" => P650,
         "category" => "Women",
         "description" => "Cute mini handbag for evening occasions"
     )
@@ -119,8 +119,8 @@ $products = array(
 ?>
 
 <header>
-    <h1>🎒 BagShop</h1>
-    <p>Find the perfect bag for your style</p>
+    <h1>Bag store</h1>
+    <p>Find a perfect bag for your style</p>
 </header>
 
 <div class="container">
