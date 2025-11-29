@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syris Bagstore - PHP Array Demo</title>
+    <title>Syris Bagstore </title>
     <style>
         /* Basic Styling for the purple-light theme */
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
@@ -83,7 +83,7 @@
 <body>
 
 <?php
-// PHP Variables and Arrays
+// PHP Variables and Arrays, Discount price of the products
 $currency = '₱'; 
 $discount_rate = 0.15; // 15% off
 
@@ -145,7 +145,7 @@ $bag_data = array(
         
         echo '<tr>';
         
-        // 1. Image 
+        // 1. Image of the products
         echo '<td class="product-img-cell">';
         echo '<img src="' . $item['image_url'] . '" alt="' . $item['name'] . '">';
         echo '</td>';
@@ -186,4 +186,5 @@ $bag_data = array(
 </footer>
 
 </body>
+
 </html>
