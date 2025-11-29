@@ -176,7 +176,7 @@ $bag_data = array(
     ?>
     
     <p style="text-align: center; margin-top: 25px; font-style: italic; color: #5d3f9b;">
-        *All bags in the store are currently 15% off the original price!
+        All bags in the store are currently 15% off the original price!
     </p>
 
 </div>
