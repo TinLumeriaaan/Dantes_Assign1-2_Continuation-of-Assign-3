@@ -11,10 +11,15 @@
             font-family: 'Quicksand', sans-serif;
             margin: 0;
             padding: 0;
+            
+        
+            background-color: #f5f0ff; 
             background-image: url('https://static.vecteezy.com/system/resources/previews/011/935/115/non_2x/bags-seamless-background-free-vector.jpg');
+            
             background-repeat: no-repeat;
             background-size: cover; 
             background-attachment: fixed;
+            
             color: #333;
         }
         
@@ -30,7 +35,7 @@
             max-width: 900px; 
             margin: 40px auto;
             padding: 20px;
-            background-color: white;
+            background-color: white; 
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(121, 82, 179, 0.15);
             min-height: 500px;
@@ -73,7 +78,6 @@
             font-weight: bold;
         }
 
-        
         .cart-action {
             display: inline-block;
             padding: 7px 10px;
@@ -98,7 +102,7 @@
         footer {
             text-align: center;
             padding: 15px;
-            color: #ffffffff;
+            color: white; 
             font-size: 14px;
             margin-top: 30px;
         }
@@ -180,9 +184,30 @@ $bag_data = array(
         // Operator
         $discount_amount = $item['price'] * $discount_rate;
         $final_price = $item['price'] - $discount_amount;
+        
+        //  CONDITIONAL LOGIC 1 
+        $price_message = $currency . number_format($final_price, 2); 
+        if ($item['category'] == 'Women') {
+            $price_message .= ' (Women\'s Sale!)';
+        } elseif ($item['category'] == 'Men') {
+            $price_message .= ' (Men\'s Sale!)';
+        }
 
-        // Conditional Statement - Ternary Operator 
-        $stock_status = ($item['stock'] > 0) ? '<span style="color: green; font-weight: 500;">In Stock</span>' : '<span style="color: red; font-weight: 500;">SOLD OUT</span>';
+        //  CONDITIONAL LOGIC 2 - Ternary, If/Elseif/Else for Stock, and If/Else for Button
+       
+        if ($item['stock'] == 0) {
+            $stock_status_text = '<span style="color: red; font-weight: 500;">SOLD OUT</span>';
+            $stock_quantity_text = 'Stock: Out of production!';
+            $action_button_html = '<span class="cart-action out-btn">Out of Stock</span>';
+        } elseif ($item['stock'] <= 2) {
+            $stock_status_text = '<span style="color: green; font-weight: 500;">In Stock</span>';
+            $stock_quantity_text = '<span style="color: orange; font-weight: bold;">Stock: LOW! (Only ' . $item['stock'] . ')</span>';
+            $action_button_html = '<a href="#" class="cart-action add-btn">Add to Cart</a>';
+        } else {
+            $stock_status_text = '<span style="color: green; font-weight: 500;">In Stock</span>';
+            $stock_quantity_text = 'Stock: Plenty';
+            $action_button_html = '<a href="#" class="cart-action add-btn">Add to Cart</a>';
+        }
         
         
         ?>
@@ -194,62 +219,24 @@ $bag_data = array(
             
             <td>
                 <strong><?php echo $item['name']; ?></strong> <br>
-                <?php echo $stock_status; ?>
+                <?php echo $stock_status_text; ?>
             </td>
 
-            <?php
-            // Category and Stock Check (IF-ELSEIF-ELSE)
-            ?>
             <td>
                 <small>Category: <?php echo $item['category']; ?></small><br>
-                
-                <?php
-                if ($item['stock'] == 0) {
-                    echo 'Stock: Out of stock';
-                } elseif ($item['stock'] <= 2) {
-                    echo '<span style="color: orange; font-weight: bold;">Stock: LOW! (Only ' . $item['stock'] . ')</span>';
-                } else {
-                    echo 'Stock: Plenty';
-                }
-                ?>
-                
+                <?php echo $stock_quantity_text; ?>
             </td>
             
             <td>
                 <del><?php echo $currency . number_format($item['price'], 2); ?></del>
             </td>
             
-            <?php
-            // Discounted Price - Switch Statement
-            ?>
             <td class="discount-price">
-                <?php
-                switch ($item['category']) {
-                    case 'Women':
-                        echo $currency . number_format($final_price, 2) . ' (Women\'s Sale!)';
-                        break;
-                    case 'Men':
-                        echo $currency . number_format($final_price, 2) . ' (Men\'s Sale!)';
-                        break;
-                    default:
-                        echo $currency . number_format($final_price, 2);
-                }
-                ?>
+                <?php echo $price_message; ?>
             </td>
             
-            <?php
-            // Interactive buttons - conditional check for interaction
-            ?>
             <td>
-                <?php 
-                if ($item['stock'] > 0) {
-                    // Normal button
-                    echo '<a href="#" class="cart-action add-btn">Add to Cart</a>';
-                } else {
-                    // Disabled button
-                    echo '<span class="cart-action out-btn">Out of Stock</span>';
-                }
-                ?>
+                <?php echo $action_button_html; ?>
             </td>
             
         </tr>
@@ -262,7 +249,7 @@ $bag_data = array(
     
     <center>
         <p style="margin-top: 25px; font-style: italic; color: #5d3f9b;">
-            Check the status column! Item availability (In Stock, Sold Out, Low) is updated automatically.
+            *Check the status column! Item availability (In Stock, Sold Out, Low) is updated automatically.
         </p>
     </center>
 
