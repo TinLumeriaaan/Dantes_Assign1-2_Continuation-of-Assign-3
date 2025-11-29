@@ -147,3 +147,37 @@ $bag_data = array(
 );
 
 ?>
+
+<header>
+    <h1>⋆.˚˖࿔ ࣪ Syris Bag Store ⋆.˚˖࿔ ࣪</h1>
+    <p>Style on the go</p>
+</header>
+
+<div class="container">
+    <h2>Our Latest Collection (<?php echo $total_products; ?> Items Listed)</h2>
+    
+    <?php
+    echo '<table>';
+    ?>
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Bag Name / Status</th>
+            <th>Category / Stock</th>
+            <th>Original Price</th>
+            <th>Special Price</th>
+            <th>Action</th> 
+        </tr>
+    </thead>
+    <tbody>
+
+    <?php
+    foreach($bag_data as $item) { 
+        
+        // Operator
+        $discount_amount = $item['price'] * $discount_rate;
+        $final_price = $item['price'] - $discount_amount;
+
+        // Conditional Statement - Ternary Operator 
+        $stock_status = ($item['stock'] > 0) ? '<span style="color: green; font-weight: 500;">In Stock</span>' : '<span style="color: red; font-weight: 500;">SOLD OUT</span>';
+        
