@@ -55,7 +55,7 @@ $bag_data = array(
             margin: 0;
             padding: 0;
             
-            /* BACKGROUND IMAGE FIXES */
+            
             background-color: #f5f0ff; 
             background-image: url('https://static.vecteezy.com/system/resources/previews/011/935/115/non_2x/bags-seamless-background-free-vector.jpg');
             
