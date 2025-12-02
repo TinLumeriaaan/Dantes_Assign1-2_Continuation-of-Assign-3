@@ -1,6 +1,6 @@
 </div>
 <footer>
-    Dantes, Christine May T. | WD-201 | Syris Bag Store
+    <p>&copy; 2025 Dantes, Christine May T. All rights reserved</p>
 </footer>
 
 </body>
