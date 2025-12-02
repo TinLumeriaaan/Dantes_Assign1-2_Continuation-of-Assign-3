@@ -1,29 +1,34 @@
 <?php
 
-require 'headerassign3.php';
+require 'headerassign3.php'; 
+
 
 function get_reorder_message($stock)
 {
     return ($stock < 10) ? 'Yes' : 'No'; 
 }
 
-
 function get_total_value($price, $quantity)
 {
+    // Price x Quantity.
     return $price * $quantity;
 }
 
 
 function get_tax_due($price, $quantity, $tax_rate_percent)
 {
+    
     $total_value = get_total_value($price, $quantity); 
 
-    // Calculation: Value * (Tax Rate / 100).
+    
     return $total_value * ($tax_rate_percent / 100);
 }
 
-//Product Inventory Data 
-// Data Array 
+
+
+// Product Inventory Data
+
+// Data Array
 $inventory_products = [
     'Classic Leather Backpack' => ['price' => 1299.00, 'stock' => 12],
     'Elegant Tote Bag'        => ['price' => 899.00, 'stock' => 0],
@@ -33,6 +38,8 @@ $inventory_products = [
     'Vintage Canvas Satchel'  => ['price' => 950.00, 'stock' => 8],  
     'Laptop Messenger Bag'    => ['price' => 1899.00, 'stock' => 15], 
 ];
+
+
 
 ?>
 
@@ -52,20 +59,20 @@ $inventory_products = [
     <tbody>
 
     <?php
-    // Use Foreach Loop to display each product.
+    // Use Foreach Loop through all the bags.
     foreach($inventory_products as $product_name => $data) {
         
         // Get price and stock from array.
         $price = $data['price'];
         $stock = $data['stock'];
 
-        //Check Re-Order Status.
+        // Check Re-Order Status.
         $reorder_message = get_reorder_message($stock);
         
         // Calculate Total Value.
         $total_value = get_total_value($price, $stock);
         
-        //Calculate Tax Due.
+        // Calculate Tax Due.
         $tax_due = get_tax_due($price, $stock, $tax_rate);
         
         // Ternary check for table row color.
@@ -73,4 +80,32 @@ $inventory_products = [
         
         
         ?>
-        
+        <tr>
+            <td><strong><?php echo $product_name; ?></strong></td> 
+            
+            <td><?php echo $stock; ?></td> 
+            
+            <td class="<?php echo $reorder_class; ?>">
+                <?php echo $reorder_message; ?>
+            </td> 
+            
+            <td>
+                <?php echo $currency . number_format($total_value, 2); ?>
+            </td> 
+            
+            <td>
+                <?php echo $currency . number_format($tax_due, 2); ?>
+            </td>
+        </tr>
+    <?php
+    } 
+    ?>
+
+    </tbody>
+    </table>
+    
+
+<?php
+
+require 'footerassign3.php';
+?>
