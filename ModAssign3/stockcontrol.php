@@ -40,3 +40,41 @@ $inventory_products = [
 
 
 ?>
+
+<div class="container">
+    <h2>Stock Control & Inventory Monitoring</h2>
+    
+    <table>
+    <thead>
+        <tr>
+            <th>Bag Name</th>
+            <th>Stock Level</th>
+            <th>Re-Order?</th>
+            <th>Total Stock Value</th>
+            <th>Tax Due (<?php echo $tax_rate; ?>%)</th> 
+        </tr>
+    </thead>
+    <tbody>
+
+    <?php
+    // Use Foreach Loop to display each product.
+    foreach($inventory_products as $product_name => $data) {
+        
+        // Get price and stock from array.
+        $price = $data['price'];
+        $stock = $data['stock'];
+
+        //Check Re-Order Status.
+        $reorder_message = get_reorder_message($stock);
+        
+        // Calculate Total Value.
+        $total_value = get_total_value($price, $stock);
+        
+        //Calculate Tax Due.
+        $tax_due = get_tax_due($price, $stock, $tax_rate);
+        
+        // Ternary check for table row color.
+        $reorder_class = ($reorder_message === 'Yes') ? 'reorder-yes' : 'reorder-no';
+        
+        
+        ?>
